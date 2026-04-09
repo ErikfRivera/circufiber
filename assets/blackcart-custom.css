@@ -1,0 +1,10 @@
+.blackcart_line-item-prices{
+  display:flex !important;
+}
+.blackcart_modal-title{
+    font-weight: 700 !important;
+}
+.tbyb-modal__item-title{
+  font-weight: 700 !important;
+}
+#preview-bar-iframe {display: none;}

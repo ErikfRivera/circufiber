@@ -1,0 +1,291 @@
+{% comment %}
+** Top bar - static **
+{% endcomment %}
+
+{% assign id = section.id %}
+{% comment %}Colors{% endcomment %}
+{% assign background = section.settings.background %}
+{% assign link = section.settings.link_color %}
+{% assign link_hover = section.settings.link_hover_color %}
+{% assign text = section.settings.text_color %}
+{% comment %}Layout{% endcomment %}
+{% assign width = section.settings.width %}
+{% comment %} Advanced {% endcomment %}
+{% assign css_class = section.settings.css_class %}
+{% assign custom_css = section.settings.custom_css %}
+
+{% comment %} Is the color set to transparent? {% endcomment %}
+{% assign background_alpha = background | color_extract: 'alpha' %}
+{% assign link_alpha = link | color_extract: 'alpha' %}
+{% assign link_hover_alpha = link_hover | color_extract: 'alpha' %}
+{% assign text_alpha = text | color_extract: 'alpha' %}
+
+
+{% comment %} Section specific CSS {% endcomment %}
+{% capture section_css -%}
+  .top-bar {
+    font-family: {{ section.settings.font.family }}, {{ section.settings.font.fallback_families }};
+    font-weight: {{ section.settings.font.weight }};
+    font-style: {{ section.settings.font.style }};
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    font-size: {{ section.settings.font_size }}px;
+    text-transform: {{ section.settings.font_style }};
+  }
+  a,
+  .header__link .disclosure__toggle,
+  .header__link .disclosure__button {
+    color: {%- if link_alpha != 0 -%}{{ link }}{%- endif -%};
+    width:100%;
+  }
+  a:hover,
+  .header__link .disclosure__toggle:hover,
+  .header__link .disclosure__button:hover  {
+    color: {%- if link_hover_alpha != 0 -%}{{ link_hover }}{%- endif -%};
+  }
+  p {
+    color: {%- if text_alpha != 0 -%}{{ text }}{%- endif -%};
+  }
+{%- endcapture -%}
+
+{% style %}
+  {{ section.settings.font | font_face }}
+
+  #shopify-section-{{ id }} {
+    background-color: {%- if background_alpha != 0 -%}{{ background }}{%- endif -%};
+    {% if width == 'wide' %}
+      width: 100%;
+    {% endif %}
+  }
+  {% render 'css-loop',
+          css: section_css,
+          id: id
+  %}
+  {% render 'css-loop',
+          css: custom_css,
+          id: id
+  %}
+{% endstyle %}
+
+{% comment %} HTML markup {% endcomment %}
+{% if section.settings.show_top_bar and section.blocks.size > 0 %}
+<section class="{{ css_class }}
+                section
+                is-width-{{ width }}">
+  <div class="container">
+    
+    <header data-top-bar-slider class="top-bar navbar one-whole column is-hidden">
+      {% for block in section.blocks %}
+        {% if block.type == 'text' %}
+          {% comment %}Phone number{% endcomment %}
+          <div class="top-bar__item top-bar__text">
+          {%if block.settings.url != blank%}
+            <a href="{{ block.settings.url }}">{%endif%}
+              <p class="navbar-item is-flex">
+              {{ block.settings.text }}
+            </p>
+            {%if block.settings.url != blank%}</a>{%endif%}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </header>
+  </div>
+</section>
+{% endif %}
+
+
+
+{% comment %}JavaScript{% endcomment %}
+<script data-theme-editor-load-script src="{{ 'z__jsTopBarSlider.js' | asset_url }}"></script>
+
+{% schema %}
+
+{
+  "name": "Top bar",
+  "class": "top-bar jsTopBarSlider",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_transition",
+      "label": "Image transition",
+      "options": [
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "slide",
+          "label": "Slide"
+        }
+      ],
+      "default": "slide"
+    },
+    {
+      "type": "range",
+      "id": "image_slideshow_speed",
+      "label": "Change image every",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "default": 8,
+      "unit": "sec"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav_buttons",
+      "label": "Show navigation dots",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_bar",
+      "label": "Show top bar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "Font",
+      "default": "open_sans_n4"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Capitalization",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Base size",
+      "min": 10,
+      "max": 20,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 6,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "standard",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Advanced",
+      "info": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "123 Main Street, Pleasantville USA"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "text"
+      }
+    ]
+  }
+}
+
+{% endschema %}

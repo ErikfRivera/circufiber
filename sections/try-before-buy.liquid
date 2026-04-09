@@ -1,0 +1,115 @@
+<section class="section is-width-standard">
+
+  <div class="container heading-custom-section"> 
+    <div class="one-whole column"> 
+        <div class="heading-section__content is-flex is-flex-column is-align-center text-align-center vertical-spacing-medium"> 
+          {{ section.settings.main_subtitle }}
+          <h2 class="heading-section__heading title"> {{ section.settings.main_heading }}</h2>
+        </div>
+       </div>
+  </div>
+
+  <div class="section is-width-standard has-gutter-enabled">
+    <div class="container is-justify-center" >
+       {% for block in section.blocks %}
+        <div class="column has-padding one-fourth text-align-left medium-down--one-whole custom-image-text ">
+        <img src="{{ block.settings.icon_img | img_url: 'master'}}" />
+        <div class="img-column__text "> 
+            <h3 class="image__title  text-align-left">{{ block.settings.title }}</h3>
+            <div class="subtext-custom">
+             {{ block.settings.paratext }}
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+
+
+</section>
+<style>
+  .custom-image-text {
+    background:{{ section.settings.background-color }};
+  }
+  .custom-images-text-list .custom-image-text .subtext-custom *, .custom-images-text-list h2.heading-section__heading {
+    color: {{ section.settings.text-color }}
+  }
+</style>
+
+
+
+{% schema %}
+ {
+  "name": "Try Before Buy",
+  "class": "custom-images-text-list",
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "richtext",
+      "id": "main_subtitle",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Subheading"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Img text background color",
+      "default": "#d1e5f1"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Heading and text color",
+      "default": "#0a3a5b"
+    }
+    
+],
+   "blocks": [
+    {
+      "type": "logo_image",
+      "name": "Custom Images with text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_img",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Image with text"
+        },
+        {
+          "type": "textarea",
+          "id": "paratext",
+          "label": "Paragarph"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Try Before Buy",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

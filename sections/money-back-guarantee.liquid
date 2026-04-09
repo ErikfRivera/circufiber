@@ -1,0 +1,147 @@
+<style>
+  #money-back-guarantee{
+    background-image: url('{{ section.settings.background_image | img_url: 'master' }}');background-repeat: no-repeat;
+    background-attachment: unset;
+    background-position: center;
+    background-size: cover;
+  }
+  #money-back-guarantee .bg-color{
+    background-color: rgb(25 57 88 / 76%);
+    color: #FFF;
+    text-align: center;
+    padding: 110px 80px;
+  }
+  #money-back-guarantee h2{
+        color: #fff;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 42px;
+  }
+  #money-back-guarantee h3{
+           color: #fff;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  #money-back-guarantee img{
+   max-width: 244px;
+    margin: 5px 0 10px 0;
+  }
+  #money-back-guarantee p {
+    color: #fff;
+    font-size: 21px;
+    line-height: 27px;
+    width: 74%;
+    margin: 0 auto;
+  }
+  @media only screen and (max-width: 800px){
+     #money-back-guarantee{
+        background-image: url('{{ section.settings.mobile_image | img_url: 'master' }}');background-repeat: no-repeat;
+     }
+    #money-back-guarantee .bg-color{
+      
+    padding: 80px 35px;
+    }
+    #money-back-guarantee p{
+       font-size: 21px;
+    line-height: 27px;
+    width: 100%;
+    margin: 0 auto;
+    }
+  }
+
+  #money-back-guarantee p.h2 {
+font-size: 44px;
+line-height: 42px;
+font-weight: 700;
+}
+  
+</style>
+<section id="money-back-guarantee" class=" section  is-width-wide under-overlay-menu mobile-text--below-media has-border "   >
+  
+  <div  class="bg-color"   >
+    <p class="h2">{{ section.settings.heading}}</p>
+    <h3>{{ section.settings.subheadings}}</h3>
+    <img src="{{ section.settings.main_image | img_url: 'master' }}" alt="Main Image">
+    <p>{{ section.settings.description}}</p>
+  </div>
+</section>
+
+<div id="faq" style="display:none;max-width:1200px;">
+  <p class="title faq-title h2">RETURNS &amp; EXCHANGES</p>
+
+  <div class="content">
+    <h3>What is your return policy?</h3>
+      <p>All Circufiber products are backed with a 30-day money-back guarantee. If your order is eligible for return, you will be provided with a return label and shipping instructions. Return requests must be made within 30 days of delivery. Learn more at <a href="/pages/happy-feet-guarantee" target="_blank" title="Happy Feet Guarantee">https://www.circufiber.com/pages/happy-feet-guarantee</a></p>
+  </div>
+
+
+  <div class="content">
+    <h3>My item arrived damaged, what do I do?</h3>
+      <p>We're sorry to hear that and are happy to provide an exchange. Please provide us with an image of the damaged item and a detailed description of what was damaged and we will send out a replacement.</p>
+  </div>
+
+  <div class="content">
+    <h3>I decided I just don't what these and I haven't received them yet, what do I do?</h3>
+      <p>You will need to accept receipt of the order and follow our return process.</p>
+  </div>
+
+  <div class="content">
+    <h3>How soon will I receive my refund?</h3>
+      <p>We will issue a return label for you to ship your order back to us at no cost to you. You may drop the package off at any US Post Office. Once your package is received in our warehouse and deemed to be in good condition, we will issue your refund within 14 business days.</p>
+  </div>
+  
+</div>
+    
+    {% schema %}
+  {
+  "name": "Money Back Guarantee",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Background Image",
+      "id": "background_image",
+      "info": "1800 x 900px recommended"
+    },
+      
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image",
+      "info": "900 x 1800px recommended"
+    },
+    {
+      "type": "text",
+      "label": "Heading",
+      "id": "heading"
+    },
+    {
+      "type": "text",
+      "label": "Subheadings",
+      "id": "subheadings"
+    },
+    {
+      "type": "image_picker",
+      "label": "Main Image",
+      "id": "main_image",
+      "info": "Icon Image"
+    },
+    {
+      "type": "textarea",
+      "label": "Description",
+      "id": "description"
+    }
+  ],
+    "presets": [
+  {
+  "name": "Money Back Guarantee",
+  "category": "Custom"
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

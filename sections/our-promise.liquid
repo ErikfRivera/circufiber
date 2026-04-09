@@ -1,0 +1,222 @@
+<div class="shopify-section html-section">
+    
+    <section class="section ourpromisesectionfullwidth is-width-wide has-background" data-section-id="template--16739955769565__fafc45bf-5f5b-4f69-b0bf-d1cc08a2f41c"> <div class="ourpromisesection"> <div class="ourpromiseimagesection"> 
+      <a class="image-with-text__link" href="{{ section.settings.imgurl }}">
+        <img alt="" class="transition--color image-with-text__image lazyautosizes lazyloaded" src="{{ section.settings.main_img | img_url: 'master' }}">
+      </a>
+    </div> 
+    
+    <div class="ourpromisetextsection"> <h2>{{ section.settings.title }}</h2> {{ section.settings.paraone }}
+    
+    <a href="#" data-fancybox data-src="#faq">
+      <img class="moneyback-image" src="{{ section.settings.small_img | img_url: 'master' }}">
+    </a>
+
+    <a class="moneyback-link" href="{{ section.settings.buttonurl }}" data-fancybox data-src="#faq">
+        {{ section.settings.button_label }}
+    </a>
+    </div>
+    </div>
+
+
+    <div id="faq" style="display:none;max-width:1200px;">
+      <h2 class="title faq-title">RETURNS &amp; EXCHANGES</h2>
+
+      <div class="content">
+        <h3>What is your return policy?</h3>
+          <p>All Circufiber products are backed with a 30-day money-back guarantee. If your order is eligible for return, you will be provided with a return label and shipping instructions. Return requests must be made within 30 days of delivery. Learn more at <a href="/pages/happy-feet-guarantee" target="_blank" title="Happy Feet Guarantee">https://www.circufiber.com/pages/happy-feet-guarantee</a></p>
+      </div>
+
+
+      <div class="content">
+        <h3>My item arrived damaged, what do I do?</h3>
+          <p>We're sorry to hear that and are happy to provide an exchange. Please provide us with an image of the damaged item and a detailed description of what was damaged and we will send out a replacement.</p>
+      </div>
+
+      <div class="content">
+        <h3>I decided I just don't what these and I haven't received them yet, what do I do?</h3>
+          <p>You will need to accept receipt of the order and follow our return process.</p>
+      </div>
+
+      <div class="content">
+        <h3>How soon will I receive my refund?</h3>
+          <p>We will issue a return label for you to ship your order back to us at no cost to you. You may drop the package off at any US Post Office. Once your package is received in our warehouse and deemed to be in good condition, we will issue your refund within 14 business days.</p>
+      </div>
+      
+    </div>
+
+    <script data-theme-editor-load-script src="{{ 'z__jsFAQ.js' | asset_url }}"></script>
+
+    <style>
+      .moneyback-link,
+      .moneyback-link:hover {
+       color:#fff;
+      }
+      .moneyback-link:hover {
+        color:#fff;
+        transform:scale(1.01);
+        transition:0.2s;
+       }
+    section.section.ourpromisesectionfullwidth.is-width-wide.has-background {
+        margin: 0px !important;
+        padding: 0px;
+    }
+    .ourpromisesection{
+        display: flex;
+    }
+    .ourpromiseimagesection {
+      float: left;
+      width: 50%;
+    }
+    .ourpromisetextsection {
+      float: right;
+      width: 50%;background-color: #193958;
+    }
+    .ourpromisetextsection h2 {
+        color: #ffffff;
+        font-weight: 700;
+        text-align: center;
+    }
+    .ourpromisetextsection {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .ourpromisetextsection p {
+        color: #ffffff;
+        text-align: center;
+        font-size: 22px;
+        max-width:400px;
+    }
+    .ourpromiseimagesection img{width:100%;}
+
+    .ourpromiseimagesection .image-with-text__link,
+    .ourpromiseimagesection .image-with-text__link img {
+        object-fit:cover;
+        height:80vh
+    }
+    .ourpromisetextsection {
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        align-items:center;
+        align-content:center;
+        justify-content:center;
+        color:#fff;
+    }
+    .moneyback-image:hover {
+        transform:scale(1.03);
+        transition:0.2s;
+    }
+
+    @media(max-width:834px) {
+      .ourpromisetextsection {
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      .ourpromisetextsection p {
+        font-size:20px;
+        padding: 0 25px;
+      }
+      .testimonials .flickity-viewport {
+       height:600px !important;
+      }
+      
+    }
+    @media (max-width:480px)  {
+      
+      .ourpromisesection {
+          display: flex;
+          flex-direction: column;
+      }
+      .ourpromiseimagesection {
+          float: none;
+          width: 100% !important;
+        }
+      .ourpromiseimagesection .image-with-text__link, .ourpromiseimagesection .image-with-text__link img {
+          object-fit: cover;
+          height: 500px !important;
+      }
+      .ourpromisetextsection {
+          float: none;
+          width: 100%;
+          background-color: #193958;
+      }
+      .ourpromisetextsection {
+      padding:60px 0 50px 0;}
+
+      .featured-collection-section .heading-section__preheading p {
+        padding: 0 50px;
+      
+      }
+
+  }
+
+
+
+    
+    </style>
+    </section>
+    
+    
+    
+    </div>
+
+
+
+
+{% schema %}
+{
+  "name": "Our Promise",
+  "class": "our-promise",
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "url",
+      "id": "imgurl",
+      "label": "Image URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_img",
+      "label": "Section Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section heading"
+    },
+    {
+      "type": "richtext",
+      "id": "paraone",
+      "label": "Paragraph"
+    },
+    {
+      "type": "image_picker",
+      "id": "small_img",
+      "label": "Small Image"
+    },
+    {
+      "type": "url",
+      "id": "buttonurl",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    }
+    
+  ],
+  "presets": [
+    {
+      "name": "Our Promise",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

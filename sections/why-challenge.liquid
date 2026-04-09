@@ -1,0 +1,159 @@
+{%style%}
+  .image-block {
+    display:none !important;
+  }
+  .columnweeksectwo {
+  float: right;
+  width: 100%;
+  padding: 10px;
+  }
+  .columnweeksecone {
+  float: left;
+  width: 100%;
+  padding: 10px;text-align: center;
+  }
+  .row.whyweekhere {
+  display: grid;align-items: flex-start;
+  grid-template-columns: auto auto;
+  grid-column-gap: 600px;
+  grid-row-gap: 10px;
+  padding: 70px 0;
+  max-width:1280px;
+  margin:0 auto;
+}
+section.section.whyweeksgirlbgsection.is-width-standard.has-background {
+    background-image: url({{ section.settings.img_back | img_url: 'master' }});
+    height: 85vh;
+    background-size: cover;
+    object-fit: cover;
+    background-position: center;
+}
+@media(max-width:1280px) {
+  .row.whyweekhere {
+    max-width:90%;
+  }
+}
+@media(max-width:991px) {
+  .row.whyweekhere {
+    grid-column-gap: 400px;
+  }
+}
+@media(max-width: 767px) {
+  section.section.whyweeksgirlbgsection.is-width-standard.has-background .row.whyweekhere {
+    display: flex;
+    padding: 70px 0 0 0;
+  }
+  section.section.whyweeksgirlbgsection.is-width-standard.has-background {
+    background-image:unset;
+    background-color:#193958;
+    padding:0;
+    height: 100%;
+  }
+  section.section.whyweeksgirlbgsection.is-width-standard.has-background .row.whyweekhere {
+    max-width:100%;
+  }
+  section.section.whyweeksgirlbgsection.is-width-standard.has-background h2,
+  section.section.whyweeksgirlbgsection.is-width-standard.has-background .row.whyweekhere p {
+    color:white;
+  }
+  section.section.whyweeksgirlbgsection.is-width-standard.has-background .row.whyweekhere p {
+    padding:0 30px;
+  }
+  .image-block {
+    display:block !important;
+    width:100%;
+  }
+  .image-block img {
+    object-fit:cover;
+    height:350px;
+  }
+}
+
+{% endstyle %}
+
+
+<section class="section whyweeksgirlbgsection challenge-whychallenge is-width-standard has-background" data-section-id="template--16743286538461__6da22dd2-6d3a-464e-877f-c0529fafe48a"> 
+  <div class="row whyweekhere"> 
+    <div class="columnweeksecone">
+      <h2>{{ section.settings.head1 }}</h2> 
+        {{ section.settings.paratext1 }}
+    </div> 
+
+    <div class="columnweeksectwo">
+      <div class="item"><h2>{{ section.settings.head2 }}</h2> {{ section.settings.paratext2 }}</div>
+      <div class="item"><h2>{{ section.settings.head3 }}</h2> {{ section.settings.paratext3 }}</div>
+      <div class="item"><h2>{{ section.settings.head4 }}</h2>{{ section.settings.paratext4 }}
+    </div>
+  </div>
+
+  <div class="image-block">
+    <img src="{{ section.settings.img_back | img_url: 'master' }}">
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Why Challenge",
+  "class": "our-promise",
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_back",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "head1",
+      "label": "First heading"
+    },
+    {
+      "type": "richtext",
+      "id": "paratext1",
+      "label": "First Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "head2",
+      "label": "Second heading"
+    },
+    {
+      "type": "richtext",
+      "id": "paratext2",
+      "label": "Second Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "head3",
+      "label": "Third heading"
+    },
+    {
+      "type": "richtext",
+      "id": "paratext3",
+      "label": "Third Paragraph"
+    },
+    {
+      "type": "text",
+      "id": "head4",
+      "label": "Fourth heading"
+    },
+    {
+      "type": "richtext",
+      "id": "paratext4",
+      "label": "Fourth Paragraph"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Challenge",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

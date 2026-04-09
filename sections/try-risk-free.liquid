@@ -1,0 +1,232 @@
+<section class="section
+  is-width-standard
+  
+    has-background
+  
+  " data-section-id="template--16743286538461__80ca9dbd-8522-45db-9653-71ae26e3e8a9"> <div class="container is-flex is-justify-center">
+<img src={{section.settings.risk_img |  img_url: 'master'}} width="250">
+</div>
+</section>
+<div id="shopify-section-template--16743286538461__1fa5a31f-93cf-49ac-83d5-58a10c8326b1" class="shopify-section heading-section">
+
+<section class="section
+                    tryusriskfreehere
+                    is-width-standard
+                    
+                    " data-section-id="template--16743286538461__1fa5a31f-93cf-49ac-83d5-58a10c8326b1"> <div class="container
+                  "> <div class="one-whole column"> <div class="heading-section__content
+                      is-flex
+                      is-flex-column
+                      is-align-center
+                      text-align-center
+                      vertical-spacing-medium"> <h2 class="heading-section__heading title">{{ section.settings.head_title }}</h2></div></div></div></section>
+  
+  
+  
+  
+  </div>
+
+  <div id="shopify-section-template--16743286538461__df356bc8-78d4-4339-9aa0-f0c9cebad836" class="shopify-section html-section">
+    <style data-shopify="">
+
+      
+    
+    
+    </style>
+    
+    <section class="section freeshippingsection
+                    is-width-standard
+                    
+                      has-background
+                    
+                    " data-section-id="template--16743286538461__df356bc8-78d4-4339-9aa0-f0c9cebad836"> 
+
+      <div class="row tryrisk"> 
+          <div class="columntryriskone"> <img src={{section.settings.icon_image_1 |  img_url: 'master'}}> <h3>{{ section.settings.icon_head1 }}</h3> <p>{{ section.settings.icon_subhead1 }}</p></div> 
+          <div class="columntryriskone"> <img src={{section.settings.icon_image_2 |  img_url: 'master'}}> <h3>{{ section.settings.icon_head2 }}</h3> <p>{{ section.settings.icon_subhead2 }}</p></div> 
+          <div class="columntryriskone"> <img src={{section.settings.icon_image_3 |  img_url: 'master'}}> <h3>{{ section.settings.icon_head3 }}</h3> <p>{{ section.settings.icon_subhead3 }}</p></div> 
+          <div class="columntryriskone"> <img src={{section.settings.icon_image_4 |  img_url: 'master'}}> <h3>{{ section.settings.icon_head4 }}</h3> <p>{{ section.settings.icon_subhead4 }}</p></div>
+    </div>
+   
+
+    <div class="disclaimer">{{ section.settings.disparagraph }}</div>
+
+    </section>
+    
+    
+    
+    </div>
+
+
+
+
+
+
+
+{% style %}
+
+#shopify-section-template--16743286538461__1fa5a31f-93cf-49ac-83d5-58a10c8326b1 .section {
+      background-image: linear-gradient(0deg, rgba(255,255,255,0), rgba(0,0,0,0));
+      background-color:;
+      margin-bottom:60px;
+     }#shopify-section-template--16743286538461__1fa5a31f-93cf-49ac-83d5-58a10c8326b1 
+  
+    .heading-section__heading {
+      color:#0a3a5b;
+     }#shopify-section-template--16743286538461__1fa5a31f-93cf-49ac-83d5-58a10c8326b1 
+  
+    .heading-section__preheading {
+      color:#0a3a5b;
+     }#shopify-section-template--16743286538461__1fa5a31f-93cf-49ac-83d5-58a10c8326b1 
+  
+    .heading-section__subheading {
+      color:#0a3a5b;
+     }
+   .columntryriskone {
+      float: left;
+      width: 25%;
+      padding: 10px;
+    }
+    .row.tryrisk:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .columntryriskone h3{
+      font-size: 22px;
+        font-weight: 700;
+    }
+    .columntryriskone p {
+      font-size: 18px;
+    }
+  .try-risk-free {
+    display: flex;
+    flex-direction:column;
+    gap:0;
+    padding:60px 0 0 0;
+  }
+  .section.freeshippingsection.is-width-standard.has-background {
+    padding-bottom:20px;
+  }
+ 
+  @media(max-width:1200px) {
+    .columntryriskone p {
+      font-size:17px;
+    }
+  }
+{% endstyle %}
+ 
+
+
+
+
+{% schema %}
+{
+  "name": "Try Risk Free",
+  "class": "try-risk-free",
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "image_picker",
+      "id": "risk_img",
+      "label": "First Image"
+
+    },
+    {
+      "type": "text",
+      "id": "head_title",
+      "label": "Title"
+
+    },
+    {
+       "type": "image_picker",
+       "id": "icon_image_1",
+      "label": "First Icon Image"
+
+    },
+    {
+      "type": "text",
+      "id": "icon_head1",
+      "label": "First Icon Heading"
+
+    },
+    {
+      "type": "richtext",
+      "id": "icon_subhead1",
+      "label": "First Icon SubHeading"
+
+    },
+    {
+       "type": "image_picker",
+       "id": "icon_image_2",
+      "label": "Second Icon Image"
+
+    },
+    {
+      "type": "text",
+      "id": "icon_head2",
+      "label": "Second Icon Heading"
+
+    },
+    {
+      "type": "richtext",
+      "id": "icon_subhead2",
+      "label": "Second Icon SubHeading"
+
+    },
+    {
+       "type": "image_picker",
+       "id": "icon_image_3",
+      "label": "Third Icon Image"
+
+    },
+    {
+      "type": "text",
+      "id": "icon_head3",
+      "label": "Third Icon Heading"
+
+    },
+    {
+      "type": "richtext",
+      "id": "icon_subhead3",
+      "label": "Third Icon SubHeading"
+
+    },
+    {
+       "type": "image_picker",
+       "id": "icon_image_4",
+      "label": "Fourth Icon Image"
+
+    },
+    {
+      "type": "text",
+      "id": "icon_head4",
+      "label": "Fourth Icon Heading"
+
+    },
+    {
+      "type": "richtext",
+      "id": "icon_subhead4",
+      "label": "Fourth Icon SubHeading"
+
+    },
+    {
+      "type": "richtext",
+      "id": "disparagraph",
+      "label": "Disclaimer text"
+
+    }
+  ],
+  "presets": [
+    {
+      "name": "Try Risk Free",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

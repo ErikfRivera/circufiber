@@ -1,0 +1,265 @@
+{% comment %}
+  Display variant options for a product
+
+  @param selected_variant
+{% endcomment %}
+
+{% assign swatch_trigger = settings.swatch_trigger | strip | downcase %}
+{% assign file_extension = 'png' %}
+
+{% assign loop_index = option_index | plus: 1 %}
+{%- assign swatch_option_key = 'option' | append: loop_index -%}
+ 
+<fieldset class="swatch is-flex is-flex-wrap" data-option-index="{{ option_index }}">
+  <legend class="option-title label">
+    <span
+      class="options-selection__option-name"
+      data-variant-option-name="{{ 'product.variants.chosen_option_html' | t: option: option.name, value: option.selected_value | escape }}"
+      data-variant-option-choose-name="{{ 'product.variants.choose_option' | t: option: option.name }}"
+    >
+      {% if selected_variant %}
+        {{ 'product.variants.chosen_option_html' | t: option: option.name, value: option.selected_value }}
+      {% else %}
+        {{ 'product.variants.choose_option' | t: option: option.name }}
+      {% endif %}
+    </span>
+  </legend>  
+  {% assign option_name = option.name | downcase %}
+   
+  {% if settings.collection_swatches_option == "color" and option_name == "color"  and  swatch_trigger == "color" %}
+    <div  class="swatch__options thumbnail-swatch is-justify-center is-flex-wrap" data-variant-option
+    data-variant-option-index="{{ option_index }}"
+    data-variant-option-chosen-value="{% if selected_variant %}{{ option.selected_value }}{% else %}false{% endif %}" > 
+    {% for value in option.values %}
+      {% assign option_name = option.name | downcase %}
+      
+      {% if show_swatches and option_name == swatch_trigger %}
+        {% assign is_color = true %}
+      {% endif %}
+       {% assign is_color = true %}
+      {% if option_name == swatch_trigger %}
+        {% assign swatch_search_color = value | downcase %}
+        {% for variant in product.variants %}
+          {% assign option_value_downcased = variant[swatch_option_key] | downcase %}
+          {% if option_value_downcased == swatch_search_color %}
+            {% assign swatch_file_url = variant.image | img_url: 'small' %}
+          {% endif %}
+        {% endfor %}
+      {% endif %} 
+
+      <div class="swatch__option swatch_color_option" data-variant-option-value-wrapper>
+        <input
+          class="swatch--{{ value | handle }}"
+          type="radio"
+          aria-label="{{ value | escape }}"
+          tabindex="0"
+          name="option-{{ option_index }}"
+          value="{{ value | escape }}"
+          {% if selected_variant and option.selected_value == value %}checked{% endif %}
+          data-variant-option-value
+          data-variant-option-value-index="{{ option_index }}"  
+        />
+        <div
+          aria-label="{{ value | escape }}"
+          tabindex="0"
+          data-value="{{ value | escape }}"
+          data-value-handle="{{ value | handle }}"
+          class="swatch-element {% if is_color %}color {% endif %}{{ value | handle }}-swatch swatch-style--{{ settings.collection_swatches_shape }}"
+        >
+           
+            <div class="tooltip">{{ value }}</div>
+
+             {% assign color_value =   value | replace: ' ', '_' | downcase   %}
+              
+              {%  if color_value == "black_show-safety" %}
+                  {% assign swatch_file_url =   'swatch_black_show_safety.png' | asset_url   %}
+              {% elsif color_value == "mineral_white" %}
+                  {% assign swatch_file_url =   'swatch_white.png' | asset_url   %}
+              {% elsif color_value == "navy_blue_show-safety" %}
+                  {% assign swatch_file_url =   'swatch_navy_show_safety.png' | asset_url   %}
+              {% elsif color_value == "navy_show-safety" %}
+                  {% assign swatch_file_url =   'swatch_navy_show_safety.png' | asset_url   %}
+              {% elsif color_value == "solid_black" %}
+                  {% assign swatch_file_url =   'swatch_black.png' | asset_url   %}
+              {% elsif color_value == "white" %}
+                  {% assign swatch_file_url =   'swatch_white.png' | asset_url   %}
+              {% elsif color_value == "pink/light_blue/mint" %}
+                  {% assign swatch_file_url =   'swatch_pinklight_bluemint.png' | asset_url   %}
+              {% elsif color_value == "navy" %}
+                  {% assign swatch_file_url =   'swatch_navy.png' | asset_url   %}
+              {% elsif color_value == "midnight_navy" %}
+                  {% assign swatch_file_url =   'swatch_midnight_navy.png' | asset_url   %}
+              {% elsif color_value == "platinum_gray" %}
+                  {% assign swatch_file_url =   'swatch_platinum_gray.png' | asset_url   %}
+              {% elsif color_value == "ever_green" %}
+                  {% assign swatch_file_url =   'swatch_ever_green.png' | asset_url   %}
+              {% elsif color_value == "mushroom_tan" %}
+                  {% assign swatch_file_url =   'swatch_mushroom_tan.png' | asset_url   %}
+              {% elsif color_value == "deep_cranberry_marooon" %}
+                  {% assign swatch_file_url =   'swatch_deep_cranberry_maroon.png' | asset_url   %}
+              {% elsif color_value == "classic_navy" %}
+                  {% assign swatch_file_url =   'swatch_classic_navy.png' | asset_url   %}
+              {% elsif color_value == "tan" %}
+                  {% assign swatch_file_url =   'swatch_tan_show_safety.png' | asset_url   %} 
+              {% elsif color_value == "black/white" %}
+                  {% assign swatch_file_url =   'swatch_combo_white_and_black.png' | asset_url   %}
+              {% elsif color_value == "mineral_white/gray" %}
+                  {% assign swatch_file_url =   'swatch_white.png' | asset_url   %}
+              {% elsif color_value == "black_show-safety/navy" %}
+                  {% assign swatch_file_url =   'swatch_combo_black_ss_and_navy.png' | asset_url   %}
+              {% elsif color_value == "black_show-safety/white" %}
+                  {% assign swatch_file_url =   'swatch_combo_black_ss_and_white.png' | asset_url   %}
+              {% else %}
+                  {% assign swatch_file_url =   ''   %}
+                -{{color_value}}-
+              {% endif %}
+            <label
+              style=" background-image: url({{ swatch_file_url }}); "
+              data-variant-option-value-label
+              data-variant-image="{% if settings.swatches_option_style == 'variant_image' and product.variants[forloop.index0].image != blank %}true{% endif %}"
+            >
+
+              {% if product.variants[forloop.index0].image == blank or settings.swatches_option_style != 'variant_image' %}
+                {% assign image_name = value | handle | append: '.' | append: file_extension %}
+                {% assign swatch = images[image_name] %}
+              {% endif %}
+
+              <img class="swatch__image {% if swatch == empty %}swatch__image--empty{% endif %}" src="{{ swatch | img_url: '50x' }}" alt="">
+
+              <span class="crossed-out" aria-label="{{ 'products.product.sold_out' | t }}" alt="{{ 'products.product.sold_out' | t }}"></span>
+            </label>
+           
+           <script class="id-script">
+            (function() {
+              const idScriptEl = document.querySelector('.id-script:not(.id-script--processed)');
+              const idScriptsProcessed = document.querySelectorAll('.id-script.id-script--processed').length;
+              const variantOptionValueWrapper = idScriptEl.closest('[data-variant-option-value-wrapper]');
+              const variantOptionValue = variantOptionValueWrapper.querySelector('[data-variant-option-value]');
+              const variantOptionValueLabel = variantOptionValueWrapper.querySelector('[data-variant-option-value-label]');
+              variantOptionValue.id = `{{ product.id }}-${idScriptsProcessed}`;
+              variantOptionValueLabel.setAttribute('for', `{{ product.id }}-${idScriptsProcessed}`);
+              idScriptEl.classList.add('id-script--processed');
+            })();
+          </script>
+        </div>
+      </div>
+         
+    {% endfor %}
+    </div>
+   
+  {% else %}
+  <div
+    class="swatch__options"
+    data-variant-option
+    data-variant-option-index="{{ option_index }}"
+    data-variant-option-chosen-value="{% if selected_variant %}{{ option.selected_value }}{% else %}false{% endif %}"
+  >
+    {% for value in option.values %}
+      {% assign option_name = option.name | downcase %}
+      
+      {% if show_swatches and option_name == swatch_trigger %}
+        {% assign is_color = true %}
+      {% endif %}
+
+      {% if option_name == swatch_trigger %}
+        {% assign swatch_search_color = value | downcase %}
+        {% for variant in product.variants %}
+          {% assign option_value_downcased = variant[swatch_option_key] | downcase %}
+          {% if option_value_downcased == swatch_search_color %}
+            {% assign swatch_file_url = variant.image | img_url: 'small' %}
+          {% endif %}
+        {% endfor %}
+      {% endif %} 
+      <div class="swatch__option" data-variant-option-value-wrapper>
+        <input
+          class="swatch--{{ value | handle }}"
+          type="radio"
+          aria-label="{{ value | escape }}"
+          tabindex="0"
+          name="option-{{ option_index }}"
+          value="{{ value | escape }}"
+          {% if selected_variant and option.selected_value == value %}checked{% endif %}
+          data-variant-option-value
+          data-variant-option-value-index="{{ option_index }}"
+        />
+        <div
+          aria-label="{{ value | escape }}"
+          tabindex="0"
+          data-value="{{ value | escape }}"
+          data-value-handle="{{ value | handle }}"
+          class="swatch-element {% if is_color %}color {% endif %}{{ value | handle }}-swatch"
+        >
+          {% if is_color %}
+            <div class="tooltip">{{ value }}</div>
+          {% endif %}
+          {% if is_color %}
+            <label
+              style="
+                {% if settings.swatches_option_style == 'variant_image' and product.variants[forloop.index0].image != blank %}
+                  background-image: url({{ swatch_file_url }});
+                {% else %}
+                  background-color: {{ value | split: ' ' | last | handle }};
+                {% endif %}
+              "
+              data-variant-option-value-label
+              data-variant-image="{% if settings.swatches_option_style == 'variant_image' and product.variants[forloop.index0].image != blank %}true{% endif %}"
+            >
+
+              {% if product.variants[forloop.index0].image == blank or settings.swatches_option_style != 'variant_image' %}
+                {% assign image_name = value | handle | append: '.' | append: file_extension %}
+                {% assign swatch = images[image_name] %}
+              {% endif %}
+
+              <img class="swatch__image {% if swatch == empty %}swatch__image--empty{% endif %}" src="{{ swatch | img_url: '50x' }}" alt="">
+
+              <span class="crossed-out" aria-label="{{ 'products.product.sold_out' | t }}" alt="{{ 'products.product.sold_out' | t }}"></span>
+            </label>
+          {% else %}
+            <label
+              data-variant-option-value-label
+            >
+              {{ value }}
+              <span class="crossed-out" aria-label="{{ 'products.product.sold_out' | t }}" alt="{{ 'products.product.sold_out' | t }}"></span>
+            </label>
+          {% endif %}
+          <script class="id-script">
+            (function() {
+              const idScriptEl = document.querySelector('.id-script:not(.id-script--processed)');
+              const idScriptsProcessed = document.querySelectorAll('.id-script.id-script--processed').length;
+              const variantOptionValueWrapper = idScriptEl.closest('[data-variant-option-value-wrapper]');
+              const variantOptionValue = variantOptionValueWrapper.querySelector('[data-variant-option-value]');
+              const variantOptionValueLabel = variantOptionValueWrapper.querySelector('[data-variant-option-value-label]');
+              variantOptionValue.id = `{{ product.id }}-${idScriptsProcessed}`;
+              variantOptionValueLabel.setAttribute('for', `{{ product.id }}-${idScriptsProcessed}`);
+              idScriptEl.classList.add('id-script--processed');
+            })();
+          </script>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</fieldset>
+<style>
+/*.swatch_color_option .swatch-element.color {
+        padding: 0;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+}
+.swatch_color_option .swatch-element.color label{
+  width: 36px !important;
+    height: 36px !important;
+
+}*/
+   
+   .swatch_color_option .swatch-element.color.swatch-style--square , 
+  .swatch_color_option .swatch-element.color label.swatch__style--square{
+    border-radius: unset;
+  }
+.thumbnail-swatch .swatch_color_option .swatch_option_color span{
+  width: 100%;
+}
+  
+</style>

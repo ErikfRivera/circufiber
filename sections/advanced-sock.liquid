@@ -1,0 +1,174 @@
+<div id="shopify-section-template--16743286538461__f32b17d5-cb6a-4a3b-9a7a-1e198187f11d" class="shopify-section heading-section">
+
+
+  <style data-shopify="">
+
+    
+  #shopify-section-template--16743286538461__f32b17d5-cb6a-4a3b-9a7a-1e198187f11d .section,
+  .socktextandimagesection,
+  #shopify-section-template--16743286538461__0a568d1e-18d0-47ff-8252-72558db5fab0,
+  .circufiber-technology {
+      background-image: linear-gradient(0deg, rgba(255,255,255,0), rgba(0,0,0,0));
+      background-color:#b5c4d0;
+     }
+  
+    .heading-section__heading {
+      color:#0a3a5b;
+     }#shopify-section-template--16743286538461__f32b17d5-cb6a-4a3b-9a7a-1e198187f11d 
+  
+    .heading-section__preheading {
+      color:#0a3a5b;
+     }#shopify-section-template--16743286538461__f32b17d5-cb6a-4a3b-9a7a-1e198187f11d 
+  
+    .heading-section__subheading {
+      color:#0a3a5b;
+     }
+     .section.socktextandimagesection.is-width-wide  {
+      max-width:1280px;
+      margin:0 auto;
+      background-color: #b5c4d0;
+  }
+    
+  
+  
+  </style> <section class="section
+                    Meet the World's Most Scientifically  Advanced Diabetic  Sock title
+                    is-width-wide
+                    
+                    " data-section-id="template--16743286538461__f32b17d5-cb6a-4a3b-9a7a-1e198187f11d"> <div class="container
+                  "> <div class="one-whole column"> <div class="heading-section__content
+                      is-flex
+                      is-flex-column
+                      is-align-center
+                      text-align-center
+                      vertical-spacing-medium"> <h2 class="heading-section__heading title">{{ section.settings.title }}</h2></div></div></div></section>
+  
+  
+  
+  
+  </div>
+
+
+  <div id="shopify-section-template--16743286538461__0a568d1e-18d0-47ff-8252-72558db5fab0" class="shopify-section image-with-text image-with-text-1">
+
+
+
+    
+    
+    <section class="section
+                    socktextandimagesection
+                    is-width-wide
+                    
+                      has-gutter-enabled
+                    
+                    
+                      equal-columns--outside-trim
+                    
+                    "> <div class="container
+                  "> <div class="image-with-text__image-column
+              image-with-text__column
+              
+                one-whole
+              
+              medium-down--one-whole
+              column
+              is-flex
+              is-align-center
+              
+              image-crop--none" id="shopify-section-template--16743286538461__0a568d1e-18d0-47ff-8252-72558db5fab0-1687884724e59f4bed-0">
+                
+                  
+                    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="image-element__wrap"> 
+      
+
+
+        <img class="is-hidden-mobile-only" src="{{ section.settings.desktop_img | img_url: 'master' }}">
+
+        
+        <img class="is-hidden-desktop-only" src="{{ section.settings.mob_img | img_url: 'master' }}">
+        
+
+
+
+
+        
+    </div>
+    
+    </div></div>
+    </section>
+    
+    
+    </div>
+
+
+
+
+
+{% style %}
+  .circufiber-technology {
+    display: flex;
+    flex-direction:column;
+    gap:40px;
+    padding:60px 0;
+  }
+
+
+  @media(max-width:414px) {
+    .circufiber-technology {
+      padding-bottom:0px;
+    }
+  }
+{% endstyle %}
+ 
+
+
+
+
+{% schema %}
+{
+  "name": "Circufiber Technology",
+  "class": "circufiber-technology",
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Section heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_img",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob_img",
+      "label": "Mobile Image"
+    }
+
+  ],
+  "presets": [
+    {
+      "name": "Circufiber Technology",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

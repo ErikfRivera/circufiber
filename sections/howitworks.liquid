@@ -1,0 +1,237 @@
+<section class="section circufiber-challenge-logo
+    is-width-standard
+    
+      has-background
+    
+    " data-section-id="template--16743286538461__80ca9dbd-8522-45db-9653-71ae26e3e8a9"> 
+</section>
+
+<div id="shopify-section-template--16743286538461__af08fa7c-a991-4d31-8f0b-9e74cf12e330" class="shopify-section heading-section">
+
+
+    <style data-shopify="">
+      #shopify-section-template--16743286538461__af08fa7c-a991-4d31-8f0b-9e74cf12e330 {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
+        
+      }
+    
+      
+    #shopify-section-template--16743286538461__af08fa7c-a991-4d31-8f0b-9e74cf12e330 .section {
+        background-image: linear-gradient(0deg, rgba(255,255,255,0), rgba(0,0,0,0));
+        background-color:;
+       }#shopify-section-template--16743286538461__af08fa7c-a991-4d31-8f0b-9e74cf12e330 
+    
+      .heading-section__heading {
+        color:#0a3a5b;
+        margin-bottom:20px;
+       }
+       .challenge-howitworks h3 {
+        font-weight:bold;
+        margin-bottom:20px;
+        }
+       #shopify-section-template--16743286538461__af08fa7c-a991-4d31-8f0b-9e74cf12e330 
+    
+      .heading-section__preheading {
+        color:#0a3a5b;
+       }#shopify-section-template--16743286538461__af08fa7c-a991-4d31-8f0b-9e74cf12e330 
+    
+      .heading-section__subheading {
+        color:#0a3a5b;
+       }
+    
+      
+    
+    
+    </style> <section class="section
+                      bold challenge-howitworks
+                      is-width-standard
+                      
+                      " data-section-id="template--16743286538461__af08fa7c-a991-4d31-8f0b-9e74cf12e330"> <div class="container
+                    "> <div class="one-whole column"> <div class="heading-section__content
+                        is-flex
+                        is-flex-column
+                        is-align-center
+                        text-align-center
+                        vertical-spacing-medium"> <h2 class="heading-section__heading title">{{ section.settings.mainheading }}</h2> 
+                        <div class="heading-section__subheading subtitle"> {{ section.settings.subheading }}</div></div></div></div></section>
+    
+    
+    
+    
+    </div>
+
+
+    <div id="shopify-section-template--16743286538461__7496cb25-ad94-4faa-b97b-85c29bed9c74" class="shopify-section html-section">
+        <style data-shopify="">
+          #shopify-section-template--16743286538461__7496cb25-ad94-4faa-b97b-85c29bed9c74 {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 0px;
+            padding-right: 0px;
+            
+          }
+          
+        
+        
+        </style>
+        
+        <section class="section how it work four image section challenge-howitworks-icons
+                        is-width-standard
+                        
+                          has-background
+                        
+                        " data-section-id="template--16743286538461__7496cb25-ad94-4faa-b97b-85c29bed9c74"> 
+                        
+                        <div id="maincontent" class="row tryrisk"> 
+                         
+                          {%comment%}<div class="columntryriskone"> 
+                            <img src="https://cdn.shopify.com/s/files/1/0484/4689/8340/files/Group_1796_200x.svg"> 
+                              <p class="text">Buy Socks</p>
+                          </div> {%endcomment%}
+                          
+                          <div class="columntryriskone"> 
+                            <img src="{{ section.settings.first_img | img_url: 'master' }}"> 
+                              <p class="text">{{ section.settings.text1 }}<br>{{ section.settings.text2 }}</p>
+                          </div> 
+
+                         <div class="columntryriskone"> 
+                            <img src="{{ section.settings.second_img | img_url: 'master' }}"> 
+                              <p class="text">{{ section.settings.text3 }} <br>{{ section.settings.text4 }}</p>
+                          </div>
+                          
+                          <div class="columntryriskone"> 
+                            <img src="{{ section.settings.third_img | img_url: 'master' }}"> 
+                              <p class="text">{{ section.settings.text5 }} <br>{{ section.settings.text6 }}</p>
+                          </div> 
+                          
+                          <div class="columntryriskone"> 
+                            <img src="{{ section.settings.fourth_img | img_url: 'master' }}"> 
+                            <p class="text">{{ section.settings.text7 }} <br>{{ section.settings.text8 }}</p>
+                          </div>
+                        </div>
+        <style>
+          .row.tryrisk {
+            width: calc(95% - 20px);
+            max-width: 1400px;
+            margin: 0 auto;
+          }
+        .columntryriskone {
+          float: left;
+          width: 25%;
+          padding: 10px;text-align: center;
+        }
+        .columntryriskone:hover {
+            transform:scale(1.03);
+            transition:0.2s;
+        }
+        .row.tryrisk:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        </style>
+        </section>
+        
+        
+        
+        </div>
+
+
+
+
+    
+
+
+{% schema %}
+{
+  "name": "How It Works",
+  "class": "image-with-text-overlay overlaid-header-option",
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "text",
+      "id": "mainheading",
+      "label": "Section heading"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Paragraph"
+    },
+    {
+      "type": "image_picker",
+      "id": "first_img",
+      "label": "First Icon Image"
+    },
+    {
+      "type": "text",
+      "id": "text1",
+      "label": "First Icon upper Text"
+    },
+        {
+      "type": "text",
+      "id": "text2",
+      "label": "First Icon lower Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "second_img",
+      "label": "Second Icon Image"
+    },
+    {
+      "type": "text",
+      "id": "text3",
+      "label": "Second Icon upper Text"
+    },
+    {
+      "type": "text",
+      "id": "text4",
+      "label": "Second Icon lower Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "third_img",
+      "label": "Third Icon Image"
+    },
+    {
+      "type": "text",
+      "id": "text5",
+      "label": "Third Icon upper Text"
+    },
+    {
+      "type": "text",
+      "id": "text6",
+      "label": "Third Icon lower Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "fourth_img",
+      "label": "Fourth Icon Image"
+    },
+    {
+      "type": "text",
+      "id": "text7",
+      "label": "Fourth Icon upper Text"
+    },
+    {
+      "type": "text",
+      "id": "text8",
+      "label": "Fourth Icon lower Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

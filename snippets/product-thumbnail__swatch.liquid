@@ -1,0 +1,120 @@
+{% if settings.collection_swatches %}
+  {% assign file_extension = 'png' %}
+
+  {% for option in product.options_with_values %}
+    {% assign swatch_trigger = settings.swatch_trigger | strip | downcase %}
+    {% assign option_name = option.name | downcase %}
+
+    {% if option_name == swatch_trigger %}
+      {% assign option_index = forloop.index0 %}
+      {% assign values = '' %}
+      <div class="thumbnail-swatch is-justify-{{ settings.thumbnail_text_alignment }} is-flex-wrap">
+
+        {% for variant in product.variants %}
+          {% assign value = variant.options[option_index] %}
+          {% unless values contains value %}
+            {% assign values = values | join: ',' %}
+            {% assign values = values | append: ',' | append: value %}
+            {% assign values = values | split: ',' %}
+
+            {% assign swatch_file_url = variant.image | img_url: 'small' %}
+             {% if settings.collection_swatches_option == "image" %}
+
+              <a href="{{ variant.url | within: collection }}" class="swatch swatch__style--{{ settings.collection_swatches_shape }}" data-swatch-name="meta-{{ option_name }}_{{ value | replace: ' ', '_' | downcase }}">
+                <span {% if section.settings.products_per_row == '2'%}
+                        data-image="{{ variant.featured_image | img_url: '600x' }}"
+                      {% elsif section.settings.products_per_row == '3' %}
+                        data-image="{{ variant.featured_image | img_url: '500x' }}"
+                      {% else %}
+                        data-image="{{ variant.featured_image | img_url: '400x' }}"
+                      {% endif %}
+                      style="
+                        {% if settings.swatches_option_style == 'variant_image' and product.variants[forloop.index0].image != blank %}
+                          background-image: url({{ swatch_file_url }});
+                        {% else %}
+                          background-color: {{ value | split: ' ' | last | handle }};
+                        {% endif %}
+                      ">
+                    {% assign image_name = value | handle | append: '.' | append: file_extension %}
+                    {% assign swatch = images[image_name] %}
+
+                    <img class="swatch__image {% if swatch == empty %}swatch__image--empty{% endif %}" src="{{ swatch | img_url: '50x' }}" alt="{{ variant.title }}">
+                  </span>
+              </a>
+            {% endif %}
+
+            {% if settings.collection_swatches_option == "color" %}
+                
+              {% assign color_value =   value | replace: ' ', '_' | downcase   %}
+              
+              {%  if color_value == "black_show-safety" %}
+                  {% assign swatch_file_url =   'swatch_black_show_safety.png' | asset_url   %}
+              {% elsif color_value == "mineral_white" %}
+                  {% assign swatch_file_url =   'swatch_white.png' | asset_url   %}
+              {% elsif color_value == "navy_blue_show-safety" %}
+                  {% assign swatch_file_url =   'swatch_navy_show_safety.png' | asset_url   %}
+              {% elsif color_value == "navy_show-safety" %}
+                  {% assign swatch_file_url =   'swatch_navy_show_safety.png' | asset_url   %}
+              {% elsif color_value == "solid_black" %}
+                  {% assign swatch_file_url =   'swatch_black.png' | asset_url   %}
+              {% elsif color_value == "white" %}
+                  {% assign swatch_file_url =   'swatch_white.png' | asset_url   %}
+              {% elsif color_value == "navy" %}
+                  {% assign swatch_file_url =   'swatch_navy.png' | asset_url   %}
+              {% elsif color_value == "pink/light_blue/mint" %}
+                  {% assign swatch_file_url =   'swatch_pinklight_bluemint.png' | asset_url   %}
+              {% elsif color_value == "midnight_navy" %}
+                  {% assign swatch_file_url =   'swatch_midnight_navy.png' | asset_url   %}
+              {% elsif color_value == "platinum_gray" %}
+                  {% assign swatch_file_url =   'swatch_platinum_gray.png' | asset_url   %}
+              {% elsif color_value == "ever_green" %}
+                  {% assign swatch_file_url =   'swatch_ever_green.png' | asset_url   %}
+              {% elsif color_value == "mushroom_tan" %}
+                  {% assign swatch_file_url =   'swatch_mushroom_tan.png' | asset_url   %}
+              {% elsif color_value == "deep_cranberry_marooon" %}
+                  {% assign swatch_file_url =   'swatch_deep_cranberry_maroon.png' | asset_url   %}
+              {% elsif color_value == "classic_navy" %}
+                  {% assign swatch_file_url =   'swatch_classic_navy.png' | asset_url   %}
+              {% elsif color_value == "tan" %}
+                  {% assign swatch_file_url =   'swatch_tan_show_safety.png' | asset_url   %} 
+              {% elsif color_value == "black/white" %}
+                  {% assign swatch_file_url =   'swatch_combo_white_and_black.png' | asset_url   %}
+              {% elsif color_value == "mineral_white/gray" %}
+                  {% assign swatch_file_url =   'swatch_white.png' | asset_url   %}
+              {% elsif color_value == "black_show-safety/navy" %}
+                  {% assign swatch_file_url =   'swatch_combo_black_ss_and_navy.png' | asset_url   %}
+              {% elsif color_value == "black_show-safety/white" %}
+                  {% assign swatch_file_url =   'swatch_combo_black_ss_and_white.png' | asset_url   %}
+              {% else %}
+                  {% assign swatch_file_url =   ''   %}
+                -{{color_value}}-
+              {% endif %}
+        
+              <a  href="javascript:;"  
+                  class="swatch swatch_option_color  swatch__style--{{ settings.collection_swatches_shape }}" 
+                  data-swatch-name="meta-{{ option_name }}_{{ value | replace: ' ', '_' | replace: '/', '-'  | downcase }}">
+              {%comment%} <span class="{{ option_name }}_{{ value | replace: ' ', '_' | downcase }}"></span> {%endcomment%}
+
+                 
+                <span  
+                      style="
+                        {% if settings.swatches_option_style == 'variant_image' and product.variants[forloop.index0].image != blank %}
+                          background-image: url({{ swatch_file_url }});
+                        {% else %}
+                          background-color: {{ value | split: ' ' | last | handle }};
+                        {% endif %}
+                      ">
+                    {% assign image_name = value | handle | append: '.' | append: file_extension %}
+                    {% assign swatch = images[image_name] %}
+
+                    <img class="swatch__image {% if swatch == empty %}swatch__image--empty{% endif %}" src="{{ swatch | img_url: '50x' }}" alt="{{ variant.title }}">
+                  </span>
+              </a>
+            {% endif %}
+          {% endunless %}
+        {% endfor %}
+
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
