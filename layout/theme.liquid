@@ -2,7 +2,6 @@
 This file has been modified by the Yoast SEO for Shopify app.
 You can learn more about this (and learn how to cleanly revert these changes) at https://yoa.st/removing-theme-changes.
 {%- endcomment -%}
-{% capture content %}
 <!doctype html>
 <html class="no-js no-touch" lang="{{ shop.locale }}">
 <head>{% render 'yoast-seo' %}
@@ -178,10 +177,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   {%- if page_description -%}
     {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
-{%- if disabled_by_yoast_seo -%}
-<meta name="description" content="{{ page_description | escape }}{% if current_tags %} {{ 'general.meta.tagged_html' | t: tags: meta_tags | escape }}.{% endif %}{% if current_page != 1 %} {{ 'general.meta.page' | t: page_number: current_page }}.{% endif %}" />
-{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
-{%- endif -%}
+    {%- if disabled_by_yoast_seo -%}
+      <meta name="description" content="{{ page_description | escape }}{% if current_tags %} {{ 'general.meta.tagged_html' | t: tags: meta_tags | escape }}.{% endif %}{% if current_page != 1 %} {{ 'general.meta.page' | t: page_number: current_page }}.{% endif %}" />
+    {%- endif -%}
   {%- endif -%}
 
   {%- if settings.favicon != nil -%}
@@ -264,7 +262,7 @@ document.addEventListener('tbyb_cart_update', function() {
 
   </script>
 
-{% include 'hulk_po_vd' %}{% include 'pagefly-app-header' %}</head>
+{% render 'hulk_po_vd' %}{% include 'pagefly-app-header' %}</head>
 {%- capture money_format_output -%}
   {%- if settings.currency_format == 'money_with_currency_format' -%}
     {{- shop.money_with_currency_format | strip_html -}}
@@ -507,14 +505,6 @@ classname[i].addEventListener('click', addToCart, false);
     }
   });
 </script>
-  
-</body>
-</html>
-{% endcapture %}
-{% assign content = content | replace_first: '<!doctype', '!doctype' | split: ' <' %}
-{%- for html in content -%}{%- assign htmlblock = html | strip | prepend: ' <' -%}{{htmlblock | replace: ' </', '</'}}{%- endfor -%}
-
-
 
 <script>
   var swatchoption = document.querySelectorAll("a.swatch_option_color");
@@ -524,28 +514,27 @@ classname[i].addEventListener('click', addToCart, false);
       let myElement = e.target;
       while (myElement.tagName !== 'A') {
         myElement = myElement.parentElement;
-      } 
-      var classname = myElement.getAttribute('data-swatch-name');    
-      //console.log(myElement.closest(".product__thumbnail")  );  
+      }
+      var classname = myElement.getAttribute('data-swatch-name');
 
-      var fourChildNode = myElement.closest(".product__thumbnail").querySelectorAll('.'+ classname+' img ' );
+      var fourChildNode = myElement.closest(".product__thumbnail").querySelectorAll('.'+ classname+' img');
+      var myNodeList = myElement.closest(".product__thumbnail").querySelectorAll('img');
+      var divs = myNodeList;
 
-        var myNodeList = myElement.closest(".product__thumbnail").querySelectorAll('img' );
-        var divs = myNodeList ;
+      for (var j = 0; j < divs.length; ++j) {
+        var classlist = divs[j].getAttribute("class");
+        var classlist_new = classlist.replace("swap--visible", "-");
+        divs[j].setAttribute("class", classlist_new + " swap--visible");
+      }
 
-        for (var i = 0; i < divs.length; ++i) {
-          var classlist = divs[i].getAttribute("class") 
-          let classlist_new = classlist.replace("swap--visible", "-");
-          divs[i].setAttribute("class", classlist_new+" swap--visible" );
-        }  
-
-        for (var i = 0; i < 1; ++i) {
-          var classlist = fourChildNode[i].getAttribute("class") 
-          let classlist_new = classlist.replace("swap--visible", "-");
-          console.log(classlist_new);
-          fourChildNode[i].setAttribute("class", classlist_new  );
-        } 
-
-    });    
-}
+      for (var k = 0; k < 1; ++k) {
+        var classlist2 = fourChildNode[k].getAttribute("class");
+        var classlist_new2 = classlist2.replace("swap--visible", "-");
+        fourChildNode[k].setAttribute("class", classlist_new2);
+      }
+    });
+  }
 </script>
+
+</body>
+</html>
